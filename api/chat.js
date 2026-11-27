@@ -1,9 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-
-const catalogPath = path.join(process.cwd(), 'api', 'wines.json');
-const wineCatalog = fs.readFileSync(catalogPath, 'utf8');
-
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const winesData = require('./wines.json');
+const wineCatalog = JSON.stringify(winesData);
 const SYSTEM_PROMPT = `
 # ROLE & PERSONA
 You are **Bacco**, an approachable, knowledgeable Wine Concierge.
